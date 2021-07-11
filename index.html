@@ -9,14 +9,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Xinlei Chen" />
+<meta name="author" content="Written by Xinlei Chen" />
 
 
-<title>Untitled</title>
+<title>Power Calculation in SW-CRT</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -33,8 +33,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -47,17 +45,100 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -319,11 +400,8 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="introduction.html"></a>
+  <a href="http://runanon.shinyapps.io/powerSW-CRT">APP</a>
 </li>
 <li>
   <a href="mailto:&lt;xic120@pitt.edu&gt;">
@@ -338,6 +416,9 @@ div.tocify {
   </a>
 </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -346,25 +427,28 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Untitled</h1>
-<h4 class="author">Xinlei Chen</h4>
-<h4 class="date">7/11/2021</h4>
+<h1 class="title toc-ignore">Power Calculation in SW-CRT</h1>
+<h4 class="author">Written by Xinlei Chen</h4>
 
 </div>
 
 
+<p><span class="math display">\[
+\]</span></p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>This Shiny APP was developed under the paper <em>Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods</em>. The App allows users to do power calculation under (1) traditional SW-CRT settings as well as (2) SW-CRT with treatment transition periods. Both the <strong>true model</strong> (model for generating data) and the <strong>fitted model</strong> (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using <strong>all combinations of the user inputs</strong>. The results in <em>.csv</em> format can be downloaded.</p>
+<p>This Shiny APP was developed under the paper <em>Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods</em>. The App allows users to do power calculation under (1) traditional SW-CRT settings <strong>(will add this feature later…)</strong> as well as (2) SW-CRT with treatment transition periods. Both the <strong>true model</strong> (model for generating data) and the <strong>fitted model</strong> (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using <strong>all combinations of the user inputs</strong>. The results in <em>.csv</em> format can be downloaded.</p>
+<p><span class="math display">\[
+\]</span></p>
 </div>
 <div id="parameter" class="section level3">
 <h3>Parameter</h3>
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
 .tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
@@ -441,7 +525,7 @@ vector with value(s) &gt; 0; <br>a single 0 indicating standard SW-CRT
 </tr>
 <tr>
 <td class="tg-c3ow">
-beta0
+beta0 (<span class="math inline">\(\beta_0\)</span>)
 </td>
 <td class="tg-0pky">
 intercept of the model
@@ -452,7 +536,7 @@ vector
 </tr>
 <tr>
 <td class="tg-c3ow">
-beta4
+beta4 (<span class="math inline">\(\beta_4\)</span>)
 </td>
 <td class="tg-0pky">
 treatment effect of treatment 4
@@ -463,7 +547,7 @@ vector
 </tr>
 <tr>
 <td class="tg-c3ow">
-rho34
+rho34 (<span class="math inline">\(\rho_{3:4}\)</span>)
 </td>
 <td class="tg-0pky">
 treatment effect ration between treatment 3 and 4
@@ -474,7 +558,7 @@ vector
 </tr>
 <tr>
 <td class="tg-c3ow">
-rho13
+rho13 (<span class="math inline">\(\rho_{1:3}\)</span>)
 </td>
 <td class="tg-0pky">
 treatment effect ration between treatment 1 and 3
@@ -485,7 +569,7 @@ vector
 </tr>
 <tr>
 <td class="tg-c3ow">
-rho24
+rho24 (<span class="math inline">\(\rho_{2:4}\)</span>)
 </td>
 <td class="tg-0pky">
 treatment effect ration between treatment 2 and 4
@@ -496,7 +580,7 @@ vector
 </tr>
 <tr>
 <td class="tg-c3ow">
-time effect size<br>
+time effect size <br>(<span class="math inline">\(\tau\)</span> or <span class="math inline">\(\tau_{j}\)</span>)
 </td>
 <td class="tg-0pky">
 time effect;<br>the number of total time points = cluster size + transition length + 1;<br>if using a non-linear secular trend, please provide the time effect at each time point
@@ -507,7 +591,7 @@ a single 0 indicating no secular trend; <br>a single nonzero value indicating a 
 </tr>
 <tr>
 <td class="tg-c3ow">
-s.d. of random cluster effect
+S.D. of random cluster effect<br>(<span class="math inline">\(\sigma^2_{1}\)</span>)
 </td>
 <td class="tg-0pky">
 the standard deviation of the random cluster effect
@@ -518,7 +602,7 @@ vector with nonnegtive values
 </tr>
 <tr>
 <td class="tg-c3ow">
-s.d. of random treatment effect
+<span style="font-weight:400;font-style:normal">S.D.</span> of random treatment effect<br>(<span class="math inline">\(\sigma^2_{2}\)</span>)
 </td>
 <td class="tg-0pky">
 the standard deviation of the random treatment effect
@@ -543,7 +627,7 @@ a single positive integer
 val1 and val2
 </td>
 <td class="tg-0pky">
-the APP will automatically conduct 2 test<br>test1: a * val1- b * val2 = 0<br>test2: val1 = val2 = 0
+the APP will automatically conduct 2 test<br>test1: <span class="math inline">\(a \times val1- b \times val2 = 0\)</span><br>test2: <span class="math inline">\(val1 = val2 = 0\)</span>
 </td>
 <td class="tg-c3ow">
 choose the treatment effect of interests
@@ -554,7 +638,7 @@ choose the treatment effect of interests
 linear combination
 </td>
 <td class="tg-0pky">
-the linear combination of test 1: a * val1- b * val2 = 0
+the linear combination of test 1: <span class="math inline">\(a \times val1- b \times val2 = 0\)</span>
 </td>
 <td class="tg-c3ow">
 a vector of length 2 with values of a and b
@@ -616,15 +700,29 @@ a vector of length 2 with values of a and b
 <p><span class="math display">\[
 \]</span></p>
 </div>
+<div id="accessibility" class="section level3">
+<h3>Accessibility</h3>
+<p>The APP can be accessed by:</p>
+<ul>
+<li><strong>(Recommanded)</strong> using the following command in R. It allows users to run the APP locally with few limitations.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">shiny<span class="op">::</span><span class="kw">runGitHub</span>(<span class="st">&quot;your repository name&quot;</span>, <span class="st">&quot;your user name&quot;</span>, <span class="dt">ref=</span><span class="st">&quot;main&quot;</span>)</a></code></pre></div>
+<ul>
+<li>clicking the <strong>“APP”</strong> tab in the top menu bar. This cloud version is <strong>NOT</strong> recommanded if huge amount of calculation is needed.</li>
+</ul>
+<p><span class="math display">\[
+\]</span></p>
+</div>
 <div id="package" class="section level3">
 <h3>Package</h3>
 <p>The required R packages are:</p>
-<pre class="r"><code>library(shiny)
-library(tidyverse)
-library(plotly)
-library(data.table)
-library(MASS)
-library(shinythemes)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(plotly)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">library</span>(shinythemes)</a></code></pre></div>
 <p><span class="math display">\[
 \]</span></p>
 </div>
@@ -633,11 +731,6 @@ library(shinythemes)</code></pre>
 <p>[1] Hussey, Michael A., and James P. Hughes. “Design and analysis of stepped wedge cluster randomized trials.” Contemporary clinical trials 28.2 (2007): 182-191.</p>
 <p><span class="math display">\[
 \]</span></p>
-</div>
-<div id="contact" class="section level3">
-<h3>Contact</h3>
-<p>Xinlei Chen</p>
-<p><a href="mailto:chenxinlei0725@gmail.com" class="email">chenxinlei0725@gmail.com</a></p>
 </div>
 
 

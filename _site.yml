@@ -1,14 +1,14 @@
-name: "Yay internet!"
+name: "Power Calculation in SW-CRT"
 output_dir: "."
 navbar:
   title: "Instruction"
-  right:
-    - text: ""
-      href: introduction.html
+  left:
+    - text: "APP"
+      href: http://runanon.shinyapps.io/powerSW-CRT
     - icon: fa-envelope fa-lg
       href: mailto:<xic120@pitt.edu>
     - icon: fa-github fa-lg
       href: http://github.com/antibaseR/
 output:
-  html_document
-      
+  html_document:
+    theme: cosmo

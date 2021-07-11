@@ -1,29 +1,36 @@
 ---
-title: "Untitled"
-author: "Xinlei Chen"
-date: "7/11/2021"
+title: "Power Calculation in SW-CRT"
+author: " Written by Xinlei Chen"
 output: 
   html_document:
     toc: true
     toc_float: true
     toc_collapsed: true
     toc_depth: 3
+    highlight: pygments
     
 ---
 
+$$
+$$
+
+
 ### Introduction
 
-This Shiny APP was developed under the paper *Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods*. The App allows users to do power calculation under (1) traditional SW-CRT settings as well as (2) SW-CRT with treatment transition periods. Both the **true model** (model for generating data) and the **fitted model** (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using **all combinations of the user inputs**. The results in *.csv* format can be downloaded. 
+This Shiny APP was developed under the paper *Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods*. The App allows users to do power calculation under (1) traditional SW-CRT settings **(will add this feature later...)** as well as (2) SW-CRT with treatment transition periods. Both the **true model** (model for generating data) and the **fitted model** (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using **all combinations of the user inputs**. The results in *.csv* format can be downloaded. 
+
+$$
+$$
 
 ### Parameter
 
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
 .tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
@@ -63,42 +70,42 @@ This Shiny APP was developed under the paper *Sample Size and Power Determinatio
     <td class="tg-c3ow">vector with value(s) &gt; 0; <br>a single 0 indicating standard SW-CRT</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">beta0</td>
+    <td class="tg-c3ow">beta0 ($\beta_0$)</td>
     <td class="tg-0pky">intercept of the model</td>
     <td class="tg-c3ow">vector</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">beta4</td>
+    <td class="tg-c3ow">beta4 ($\beta_4$)</td>
     <td class="tg-0pky">treatment effect of treatment 4</td>
     <td class="tg-c3ow">vector</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">rho34</td>
+    <td class="tg-c3ow">rho34 ($\rho_{3:4}$)</td>
     <td class="tg-0pky">treatment effect ration between treatment 3 and 4</td>
     <td class="tg-c3ow">vector</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">rho13</td>
+    <td class="tg-c3ow">rho13 ($\rho_{1:3}$)</td>
     <td class="tg-0pky">treatment effect ration between treatment 1 and 3</td>
     <td class="tg-c3ow">vector</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">rho24</td>
+    <td class="tg-c3ow">rho24 ($\rho_{2:4}$)</td>
     <td class="tg-0pky">treatment effect ration between treatment 2 and 4</td>
     <td class="tg-c3ow">vector</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">time effect size<br></td>
+    <td class="tg-c3ow">time effect size <br>($\tau$ or $\tau_{j}$)</td>
     <td class="tg-0pky">time effect;<br>the number of total time points = cluster size + transition length + 1;<br>if using a non-linear secular trend, please provide the time effect at each time point</td>
     <td class="tg-c3ow">a single 0 indicating no secular trend; <br>a single nonzero value indicating a linear secular trend; <br>a vector with length &gt; 1 indicating a non-linear secular trend</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">s.d. of random cluster effect</td>
+    <td class="tg-c3ow">S.D. of random cluster effect<br>($\sigma^2_{1}$)</td>
     <td class="tg-0pky">the standard deviation of the random cluster effect</td>
     <td class="tg-c3ow">vector with nonnegtive values</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">s.d. of random treatment effect</td>
+    <td class="tg-c3ow"><span style="font-weight:400;font-style:normal">S.D.</span> of random treatment effect<br>($\sigma^2_{2}$)</td>
     <td class="tg-0pky">the standard deviation of the random treatment effect</td>
     <td class="tg-c3ow">vector with nonnegtive values</td>
   </tr>
@@ -109,12 +116,12 @@ This Shiny APP was developed under the paper *Sample Size and Power Determinatio
   </tr>
   <tr>
     <td class="tg-c3ow">val1 and val2</td>
-    <td class="tg-0pky">the APP will automatically conduct 2 test<br>test1: a * val1- b * val2 = 0<br>test2: val1 = val2 = 0</td>
+    <td class="tg-0pky">the APP will automatically conduct 2 test<br>test1: $a \times val1- b \times val2 = 0$<br>test2: $val1 = val2 = 0$</td>
     <td class="tg-c3ow">choose the treatment effect of interests</td>
   </tr>
   <tr>
     <td class="tg-c3ow">linear combination</td>
-    <td class="tg-0pky">the linear combination of test 1: a * val1- b * val2 = 0</td>
+    <td class="tg-0pky">the linear combination of test 1: $a \times val1- b \times val2 = 0$</td>
     <td class="tg-c3ow">a vector of length 2 with values of a and b</td>
   </tr>
 </tbody>
@@ -189,6 +196,23 @@ The output consists of three parts:
 $$
 $$
 
+### Accessibility
+
+The APP can be accessed by:
+
+* **(Recommanded)** using the following command in R. It allows users to run the APP locally with few limitations.
+
+```{r, eval=F}
+library(shiny)
+shiny::runGitHub("your repository name", "your user name", ref="main")
+```
+
+* clicking the **"APP"** tab in the top menu bar. This cloud version is **NOT** recommanded if huge amount of calculation is needed.
+
+
+$$
+$$
+
 ### Package
 
 The required R packages are:
@@ -212,11 +236,5 @@ $$
 
 $$
 $$
-
-### Contact
-
-Xinlei Chen
-
-chenxinlei0725@gmail.com
 
 
