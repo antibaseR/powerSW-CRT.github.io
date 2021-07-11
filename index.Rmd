@@ -22,14 +22,14 @@ This Shiny APP was developed under the paper *Sample Size and Power Determinatio
 
 The APP can be accessed by:
 
-* **(Recommanded)** using the following command in R. It allows users to run the APP locally with few limitations.
+* **(Recommended)** using the following command in R. It allows users to run the APP locally with few limitations.
 
 ```{r, eval=F}
 library(shiny)
 shiny::runGitHub("powerSW-CRT", "antibaseR", ref="main")
 ```
 
-* clicking the **"APP"** tab in the top menu bar. This cloud version is **NOT** recommanded if huge amount of calculation is needed.
+* clicking the **"APP"** tab in the top menu bar. This cloud version is **NOT** recommended if huge amount of calculation is needed.
 
 
 $$
