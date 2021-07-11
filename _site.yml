@@ -1,0 +1,14 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Instruction"
+  right:
+    - text: ""
+      href: introduction.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<xic120@pitt.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/antibaseR/
+output:
+  html_document
+      
