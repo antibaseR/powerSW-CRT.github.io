@@ -438,6 +438,15 @@ div.tocify {
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>This Shiny APP was developed under the paper <em>Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods</em>. The App allows users to do power calculation under (1) traditional SW-CRT settings <strong>(will add this feature later…)</strong> as well as (2) SW-CRT with treatment transition periods. Both the <strong>true model</strong> (model for generating data) and the <strong>fitted model</strong> (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using <strong>all combinations of the user inputs</strong>. The results in <em>.csv</em> format can be downloaded.</p>
+<p>The APP can be accessed by:</p>
+<ul>
+<li><strong>(Recommanded)</strong> using the following command in R. It allows users to run the APP locally with few limitations.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">shiny<span class="op">::</span><span class="kw">runGitHub</span>(<span class="st">&quot;your repository name&quot;</span>, <span class="st">&quot;your user name&quot;</span>, <span class="dt">ref=</span><span class="st">&quot;main&quot;</span>)</a></code></pre></div>
+<ul>
+<li>clicking the <strong>“APP”</strong> tab in the top menu bar. This cloud version is <strong>NOT</strong> recommanded if huge amount of calculation is needed.</li>
+</ul>
 <p><span class="math display">\[
 \]</span></p>
 </div>
@@ -696,20 +705,6 @@ a vector of length 2 with values of a and b
 <li>effect size curve</li>
 <li>power curve</li>
 </ul></li>
-</ul>
-<p><span class="math display">\[
-\]</span></p>
-</div>
-<div id="accessibility" class="section level3">
-<h3>Accessibility</h3>
-<p>The APP can be accessed by:</p>
-<ul>
-<li><strong>(Recommanded)</strong> using the following command in R. It allows users to run the APP locally with few limitations.</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">shiny<span class="op">::</span><span class="kw">runGitHub</span>(<span class="st">&quot;your repository name&quot;</span>, <span class="st">&quot;your user name&quot;</span>, <span class="dt">ref=</span><span class="st">&quot;main&quot;</span>)</a></code></pre></div>
-<ul>
-<li>clicking the <strong>“APP”</strong> tab in the top menu bar. This cloud version is <strong>NOT</strong> recommanded if huge amount of calculation is needed.</li>
 </ul>
 <p><span class="math display">\[
 \]</span></p>
