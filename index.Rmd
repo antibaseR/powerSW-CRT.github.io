@@ -26,7 +26,7 @@ The APP can be accessed by:
 
 ```{r, eval=F}
 library(shiny)
-shiny::runGitHub("your repository name", "your user name", ref="main")
+shiny::runGitHub("powerSW-CRT", "antibaseR", ref="main")
 ```
 
 * clicking the **"APP"** tab in the top menu bar. This cloud version is **NOT** recommanded if huge amount of calculation is needed.
