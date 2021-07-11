@@ -193,7 +193,7 @@ $$
 
 ### Output
 
-The output consists of three parts:
+The output consists of two parts:
 
 * Power
   + power is generated based on the simulation using all combinations of the user input
@@ -201,10 +201,7 @@ The output consists of three parts:
   + estimated coefficient, 95% CI and p-value of each treatment
   + estimated coefficient, 95% CI and p-value of time when using linear secular trend in the fitted model
   + 95% CI and p-value of the two hypothesis tests
-* Plot
-  + sample size curve
-  + effect size curve
-  + power curve
+
 
 $$
 $$
