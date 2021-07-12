@@ -35,7 +35,7 @@ shiny::runGitHub("powerSW-CRT", "antibaseR", ref="main")
 $$
 $$
 
-### Parameter
+### Input Parameter
 
 
 <style type="text/css">
