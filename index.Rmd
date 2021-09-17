@@ -1,6 +1,6 @@
 ---
 title: "Power Calculation in SW-CRT"
-author: " Written by Xinlei Chen"
+author: "Xinlei Chen"
 output: 
   html_document:
     toc: true
