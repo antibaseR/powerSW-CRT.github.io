@@ -17,7 +17,7 @@ $$
 
 ### Introduction
 
-This Shiny APP was developed under the paper *Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods*. The App allows users to do power calculation under (1) traditional SW-CRT settings **(will add this feature later...)** as well as (2) SW-CRT with treatment transition periods. Both the **true model** (model for generating data) and the **fitted model** (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using **all combinations of the user inputs**. The results in *.csv* format can be downloaded. 
+This Shiny APP was developed under the paper *Sample Size and Power Determination in Stepped Wedge Cluster Randomized Trial Designs with Treatment Transition Periods*. The App allows users to do power calculation under SW-CRT with treatment transition periods. Both the **true model** (model for generating data) and the **fitted model** (model for fitting the generated data) are GLMM model based on the Hussey and Hughes model [1]. Users are allowed to provide their input of each parameter as vector, and the APP will automatically generate the power (as well as model fitting results) using **all combinations of the user inputs**. The results in *.csv* format can be downloaded. 
 
 
 The APP can be accessed by:
@@ -80,7 +80,7 @@ $$
   <tr>
     <td class="tg-c3ow">transition length</td>
     <td class="tg-0pky">the length of the treatment transition period</td>
-    <td class="tg-c3ow">vector with value(s) &gt; 0; <br>a single 0 indicating standard SW-CRT</td>
+    <td class="tg-c3ow">vector with value(s) &gt; 0</td>
   </tr>
   <tr>
     <td class="tg-c3ow">beta0 ($\beta_0$)</td>
